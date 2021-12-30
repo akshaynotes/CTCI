@@ -57,7 +57,38 @@ const isPerm = (s, t) => {
 // Ex: Input: "Mr John Smith"
 // Output: "Mr%20John%20Smith"
 
-// 1.5 Implement a method to perform basic string compression usingthe counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the "compressed" string would not become smaller than the original string, your method should return the original string.
+const replaceSpaces = (str) => {
+    return str.split(' ').join('%20');
+};
+
+// 1.5 Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the "compressed" string would not become smaller than the original string, your method should return the original string.
+
+// if unique character count x2 <= characters return characters. Ex: aabbccde
+const compress = (str) => {
+    let arr = str.split('');
+    let result = [arr[0]]; 
+    let count = 0;
+    for(let i = 1; i <= arr.length; i++){
+        if(result[result.length-1] !== arr[i] && arr[i] !== undefined){
+            count++;
+            result.push(count);
+            result.push(arr[i]);
+            count = 0;
+        } else if(result[result.length-1] !== arr[i] && arr[i] === undefined){
+            count++;
+            result.push(count); 
+            count = 0;
+        } else if(result[result.length-1] === arr[i]) {
+            count++;
+        }
+    }
+
+    if(arr.length > result.length){
+        return result.join('');
+    } else {
+        return arr.join('');
+    };
+}
 
 // 1.6 Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
 
