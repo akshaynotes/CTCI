@@ -2,32 +2,49 @@
 
 // 1.1 Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
 
-const uniqueChar = (str) => {
-  const arr = str.split("");
+const allUnique = (str) => { 
+  const arr = str.split(""); 
   const firstChar = str[0];
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] !== firstChar) {
+  const found = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (found.includes(arr[i])) {
       return false;
     }
+    found.push(arr[i]);
   }
   return true;
 };
 
+// ASCI can be used to create hash table
+
+
 // 1.2 Implement a function void reverse(char* str) in C or C++ which reverses a null-terminated string.
+
+const swap = (arr, start, end) => {
+    let s = arr[start];
+    arr[start] = arr[end];
+    arr[end] = s;
+}
 
 const reverseStr = (str) => { 
     let arr = str.split('');
-    let middle = str.length / 2;
     let start = 0;
-    let end = str.length - 1;
-    let s;
-    for(let i = 0; i < middle; i++){
-        s = arr[start];
-        arr[start] = arr[end];
-        arr[end] = s;
+    let end = str.length - 1; 
+
+    while(start < end){
+        swap(arr, start, end);
         start++;
         end--;
-    };
+    }
+
+    // let middle = str.length / 2;
+    // for(let i = 0; i < middle; i++){
+    //     s = arr[start];
+    //     arr[start] = arr[end];
+    //     arr[end] = s;
+    //     start++;
+    //     end--;
+    // }; 
 
     let result = arr.join('');
     return result;
@@ -45,7 +62,7 @@ const isPerm = (s, t) => {
       let ind = t.indexOf(s[i]);
       t.splice(ind, 1);
     }
-  }
+  } 
 
   if (t.length > 0) {
     return false;
@@ -62,6 +79,9 @@ const replaceSpaces = (str) => {
 };
 
 // 1.5 Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the "compressed" string would not become smaller than the original string, your method should return the original string.
+
+// Input: aabcccccaaa
+// Output: a2b1c5a3 
 
 // if unique character count x2 <= characters return characters. Ex: aabbccde
 const compress = (str) => {
@@ -83,6 +103,30 @@ const compress = (str) => {
         }
     }
 
+    if(arr.length > result.length){
+        return result.join('');
+    } else {
+        return arr.join('');
+    };
+}
+
+const compress = (str) => {
+    let arr = str.split('');
+    let obj = {};
+    for(let i = 0; i < arr.length; i++){
+       if(obj[arr[i]] >= 1){ 
+           obj[arr[i]] = obj[arr[i]] + 1;
+       } else {
+           obj[arr[i]] = 1;
+       }
+    }
+    const allKeys = Object.keys(obj);
+    let result = [];
+    for(let i = 0; i < allKeys.length; i++){
+        result.push(allKeys[i])
+        result.push(obj[allKeys[i]])
+    }
+    
     if(arr.length > result.length){
         return result.join('');
     } else {
