@@ -135,6 +135,30 @@ const compress = (str) => {
 }
 
 // 1.6 Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+// Source: https://codereview.stackexchange.com/questions/186805/rotate-an-n-%C3%97-n-matrix-90-degrees-clockwise
+var rotate = function(matrix) {
+    // Copy the original matrix
+    var origMatrix = matrix.slice(); // - apparently slice() is a way to copy an array into another!
+    for(var i=0; i < matrix.length; i++) { // - we'll need to pass every row into our matrix using i
+        // Map each row entry to its rotated value
+        var row = matrix[i].map(function(x, j) { // x remains 'a', j iterates - 0,1,2,3
+            var k = (matrix.length - 1) - j; // k = 3,2,1,then 0
+            return origMatrix[k][i]; // this represents a letter 'd' then 'c','b','a'
+        });
+        matrix[i] = row;
+    }
+    return matrix;
+};
+
+/* 
+Ex: 
+rotate([
+    ["a", "a", "a", "a"],
+    ["b", "b", "b", "b"],
+    ["c", "c", "c", "c"],
+    ["d", "d", "d", "d"]
+])
+*/
 
 // 1.7 Write an algorithm such that if an element in an MxM matrix is 0, its entire row and column are set to 0.
 
