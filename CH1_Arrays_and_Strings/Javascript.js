@@ -162,4 +162,19 @@ rotate([
 
 // 1.7 Write an algorithm such that if an element in an MxM matrix is 0, its entire row and column are set to 0.
 
+/*
+pseudo code - 
+a. write function that fills horizontal array. input: whole array, array#. Output: new array with elements at array#.
+b. write function that fills vertical array. input: whole array, array#, position. Output: new array with elements at position.
+c. write function to find incidents of 0, if 0 is found replace it with letter A.
+d. once entire array is looped call the 2 functions defined above at positions where A is found
+*/
+
+const fillHoriz = (arr, arrPos) => {}
+const fillVert = (arr, arrPos, pos) => {}
+const matrixFill = (arr) => {}
+
+
+
+
 // 1.8 Assume you have a method isSubstring which checks if one word is a sustring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g., "waterbottle" is rotation of "erbottlewat").
